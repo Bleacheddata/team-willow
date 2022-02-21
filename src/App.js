@@ -1,15 +1,18 @@
 import "./styles.css";
-import { card } from "./cards.js";
+import { createCard } from "./cards.js";
 import React from "react";
 
-export default function App() {
-  return (
-    <div className="App">
-      <br />
-      <br />
-      <h1>Team Willow</h1>
-      <button> Open Cards </button>
-      Hello World
-    </div>
-  );
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div className="App">
+        <br />
+        <br />
+        <h1>Team Willow</h1>
+      </div>
+    );
+  }
 }
