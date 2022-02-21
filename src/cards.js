@@ -30,5 +30,4 @@ if (card1.power >= 10 && card1.power <= 12) {
   card1.rarity = "Ultra-Rare";
 }
 
-if(card1.)
-console.log(card1);
+if (card1.type) console.log(card1);
