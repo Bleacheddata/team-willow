@@ -1,6 +1,21 @@
+html {
+  height: 100%;
+}
 body {
   font-family: "Chelsea Market", cursive;
+  background: linear-gradient(180deg, #ffb7b7 0%, #727272 100%),
+    radial-gradient(60.91% 100% at 50% 0%, #ffd1d1 0%, #260000 100%),
+    linear-gradient(238.72deg, #ffdddd 0%, #720066 100%),
+    linear-gradient(127.43deg, #00ffff 0%, #ff4444 100%),
+    radial-gradient(100.22% 100% at 70.57% 0%, #ff0000 0%, #00ffe0 100%),
+    linear-gradient(127.43deg, #b7d500 0%, #3300ff 100%);
+  background-blend-mode: screen, overlay, hard-light, color-burn, color-dodge,
+    normal;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 120%;
 }
+
 .App {
   display: flex;
   flex-direction: column;
@@ -11,4 +26,37 @@ button {
   border: 0;
   background: 0;
   font-family: "Chelsea Market", cursive;
+}
+
+.card {
+  position: absolute;
+  width: 232px;
+  height: 418px;
+  left: 191px;
+  top: 251px;
+}
+.cardTop {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 19.86%;
+  bottom: 0%;
+
+  background: url(13305caf2cace79f8d2d6391c83ce834.jpg);
+  border: 1px solid #10ff28;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cardBottom {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 19.86%;
+  bottom: 0%;
+
+  background: url(13305caf2cace79f8d2d6391c83ce834.jpg);
+  border: 1px solid #10ff28;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

@@ -2,31 +2,42 @@ function randomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-let cardNames = ["Engineer", "Survivor", "Sharpshooter", "Ghost", "Runner"];
+let cardNames = [
+  "Raiden",
+  "Eden",
+  "Ghost",
+  "Nightrunner",
+  "Archangel",
+  "Scorch",
+  "Tempest",
+  "Phantom",
+  "Knight",
+  "Viper"
+];
 let cardType = ["Depletor", "Generator"];
 
-export function createCard() {
-  let card1 = new Object();
-  card1.name = cardNames[randomInteger(0, cardNames.length)];
-  card1.power = randomInteger(0, 12);
+export function getCard() {
+  let card = Object();
+  card.name = cardNames[randomInteger(0, cardNames.length)];
+  card.power = randomInteger(0, 12);
 
-  if (card1.power >= 0 && card1.power <= 3) {
-    card1.rarity = "Common";
+  if (card.power >= 0 && card.power <= 3) {
+    card.rarity = "Common";
   }
-  if (card1.power >= 4 && card1.power <= 6) {
-    card1.rarity = "Uncommon";
+  if (card.power >= 4 && card.power <= 6) {
+    card.rarity = "Uncommon";
   }
-  if (card1.power >= 7 && card1.power <= 9) {
-    card1.rarity = "Rare";
+  if (card.power >= 7 && card.power <= 9) {
+    card.rarity = "Rare";
   }
-  if (card1.power >= 10 && card1.power <= 12) {
-    card1.rarity = "Ultra-Rare";
+  if (card.power >= 10 && card.power <= 12) {
+    card.rarity = "Ultra-Rare";
   }
 
-  card1.type = cardType[randomInteger(0, 1)];
+  card.type = cardType[randomInteger(0, 1)];
 
-  if (card1.type === "Depletor") {
-    card1.power = card1.power * -1;
+  if (card.type === "Depletor") {
+    card.power = card.power * -1;
   }
-  return card1;
+  return card;
 }
