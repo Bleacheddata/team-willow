@@ -1,7 +1,6 @@
 import "./styles.css";
 import { getCard } from "./cards.js";
 import React from "react";
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -21,8 +20,8 @@ export default class App extends React.Component {
             <div
               key={index}
               id={index}
-              onMouseOver={() => this.onHover(index, i.border)}
-              onMouseLeave={() => this.onLeaveHover(index)}
+              onMouseOver={() => this.onHover(index, i.rarity)}
+              onMouseLeave={() => this.onLeaveHover(index, i.rarity)}
               className="frame"
               style={{
                 background: `url(${i.image}) no-repeat center center / cover`,
@@ -33,9 +32,12 @@ export default class App extends React.Component {
                 {i.rarity} <br />
                 {i.name}
               </div>
-              <div className="cardmid white">{i.type}</div>
+              <div className="cardmid white">
+                {" "}
+                <br />
+              </div>
 
-              <div className="power white">{i.power} </div>
+              <div className="power white"> {i.power} </div>
 
               <div className="texture"> </div>
             </div>
@@ -45,24 +47,16 @@ export default class App extends React.Component {
     );
   }
 
-  onHover(id, color) {
-    let card = document.getElementById(id).style;
-    card.transitionDuration = "0.5s";
-    card.width = "16vmax";
-    card.height = "26.66vmax";
-    card.boxShadow = `0 0 20px 10px ${color}`;
+  onHover(id, rarity) {
+    let card = document.getElementById(id);
 
-    if (color === "gold") {
-      card.boxShadow = `0 0 50px 30px ${color}`;
-    }
+    card.classList.add(rarity + "Glow");
   }
 
-  onLeaveHover(id) {
-    let card = document.getElementById(id).style;
-    card.transitionDuration = "0.2s";
-    card.width = "15vmax";
-    card.height = "25vmax";
-    card.boxShadow = ``;
+  onLeaveHover(id, rarity) {
+    let card = document.getElementById(id);
+
+    card.classList.remove(rarity + "Glow");
   }
 
   openPack() {

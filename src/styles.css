@@ -3,7 +3,7 @@ html {
 }
 body {
   font-family: "Chelsea Market", cursive;
-  background-image: url(https://s3.amazonaws.com/ganbreederpublic/hires/784bd6bbe36d0fd5.jpeg);
+  background-image: url(https://github.com/Bleacheddata/team-willow/blob/main/src/images/menu.jpg?raw=true);
   background-blend-mode: screen, overlay, hard-light, color-burn, color-dodge,
     normal;
   background-repeat: no-repeat;
@@ -38,6 +38,7 @@ button {
   align-items: center;
   transition-duration: 0.2s;
 }
+
 .cardtop {
   font-size: 1.5em;
   text-align: center;
@@ -71,4 +72,30 @@ button {
   mix-blend-mode: overlay;
   opacity: 50%;
   pointer-events: none;
+}
+
+.CommonGlow {
+  box-shadow: 0 0 20px 10px white;
+  transition-duration: 0.2s;
+  width: 16vmax;
+  height: 26.66vmax;
+}
+.UncommonGlow {
+  box-shadow: 0 0 20px 10px green;
+  transition-duration: 0.2s;
+  width: 16vmax;
+  height: 26.66vmax;
+}
+.RareGlow {
+  box-shadow: 0 0 20px 10px blue;
+  transition-duration: 0.2s;
+  width: 16vmax;
+  height: 26.66vmax;
+}
+
+.Ultra-RareGlow {
+  box-shadow: 0 0 50px 30px gold;
+  transition-duration: 0.2s;
+  width: 16vmax;
+  height: 26.66vmax;
 }
