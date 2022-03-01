@@ -33,7 +33,10 @@ export default class App extends React.Component {
                 {i.name}
               </div>
               <div className="cardmid white">
-                {" "}
+                <img
+                  src="https://raw.githubusercontent.com/Bleacheddata/team-willow/87be715a05114416957454e522e60790d1ef7a15/src/images/generator_icon.svg"
+                  alt=""
+                />
                 <br />
               </div>
 
