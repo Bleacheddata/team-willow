@@ -70,9 +70,7 @@ button {
 }
 
 .back {
-  background: linear-gradient(to bottom, #c39738, #deb761, #c39738);
   background: linear-gradient(to bottom, #bcc6cc, #eee, #bcc6cc);
-  color: black;
 }
 .front {
   transform: rotateY(180deg);

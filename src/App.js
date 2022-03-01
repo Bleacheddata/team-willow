@@ -28,8 +28,10 @@ export default class App extends React.Component {
               >
                 <div className={`cardframe back`}>
                   <img
-                    src="https://github.com/Bleacheddata/team-willow/blob/main/src/images/back_icon.png?raw=true"
+                    src="https://uploads.codesandbox.io/uploads/user/adb5b6ff-3d37-4b52-b8d5-25098bc45d0a/GbF0-back_icon.png
+                    "
                     width="200px"
+                    alt=""
                   />
                 </div>
                 <div
