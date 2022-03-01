@@ -8,6 +8,7 @@ export default class App extends React.Component {
     this.openPack = this.openPack.bind(this);
     this.onHover = this.onHover.bind(this);
     this.onLeaveHover = this.onLeaveHover.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
   render() {
     return (
@@ -17,48 +18,55 @@ export default class App extends React.Component {
         </button>
         <div className="cards-container">
           {this.state.pack.map((i, index) => (
-            <div
-              key={index}
-              id={index}
-              onMouseOver={() => this.onHover(index, i.rarity)}
-              onMouseLeave={() => this.onLeaveHover(index, i.rarity)}
-              className="frame"
-              style={{
-                background: `url(${i.image}) no-repeat center center / cover`,
-                border: `0.5rem outset ${i.border}`
-              }}
-            >
-              <div className="cardtop white">
-                {i.rarity} <br />
-                {i.name}
-              </div>
-              <div className="cardmid white">
-                <img
-                  src="https://raw.githubusercontent.com/Bleacheddata/team-willow/main/src/images/generator_icon.svg"
-                  width="90px"
-                />
-              </div>
+            <div className={`card`}>
+              <div
+                id={index}
+                className={`card-content ${i.rarity}`}
+                onMouseEnter={() => this.onHover(index)}
+                onMouseLeave={() => this.onLeaveHover(index)}
+                onClick={() => this.onClick(index)}
+              >
+                <div className={`cardframe back`}></div>
+                <div
+                  key={index + "Front"}
+                  id={index + "Front"}
+                  className={`cardframe front ${i.name}`}
+                >
+                  <div className="cardtop white">
+                    {i.rarity} <br />
+                    {i.name}
+                  </div>
+                  <div className="cardmid white">
+                    <img
+                      className="typeicon"
+                      src="https://raw.githubusercontent.com/Bleacheddata/team-willow/4c8078c552029b1113077c393bce2b10f59d87de/src/images/generatorIcon.svg"
+                      width="120px"
+                      alt=""
+                    />
+                  </div>
+                  <div id={index + "Texture"} className="texture"></div>
 
-              <div className="power white"> {i.power} </div>
-
-              <div className="texture"> </div>
+                  <div className="power white"> {i.power} </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
       </div>
     );
   }
-
-  onHover(id, rarity) {
+  onHover(id) {
     let card = document.getElementById(id);
-
-    card.classList.add(rarity + "Glow");
+    card.classList.add("hover");
   }
-
-  onLeaveHover(id, rarity) {
+  onLeaveHover(id) {
     let card = document.getElementById(id);
-
-    card.classList.remove(rarity + "Glow");
+    card.classList.remove("hover");
+  }
+  onClick(id) {
+    let card = document.getElementById(id);
+    card.classList.remove("hover");
+    card.classList.add("rotate");
   }
 
   openPack() {

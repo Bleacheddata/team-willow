@@ -51,7 +51,7 @@ let cardNames = [
   {
     name: "Nomad",
     image:
-      " https://i.pinimg.com/originals/50/fa/c7/50fac7e383458e9360faa499f27819d1.jpg"
+      "https://i.pinimg.com/originals/50/fa/c7/50fac7e383458e9360faa499f27819d1.jpg"
   }
 ];
 let cardType = ["Depletor", "Generator"];

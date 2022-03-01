@@ -3,7 +3,7 @@ html {
 }
 body {
   font-family: "Chelsea Market", cursive;
-  background-image: url(https://github.com/Bleacheddata/team-willow/blob/main/src/images/menu.jpg?raw=true);
+  background-image: url(https://rawcdn.githack.com/Bleacheddata/team-willow/6f3d4240acee7d1c6b73fd40599dddc40d15497b/src/images/menu.jpg);
   background-blend-mode: screen, overlay, hard-light, color-burn, color-dodge,
     normal;
   background-repeat: no-repeat;
@@ -27,16 +27,54 @@ button {
   justify-content: space-around;
   width: 100%;
 }
-.frame {
-  position: relative;
+.card {
+  background-color: transparent;
   width: 15vmax;
   height: 25vmax;
+  perspective: 1000px;
+  transition-duration: 2s;
+}
+.card-content {
+  position: relative;
+  border-radius: 1.5vmax;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+.hover {
+  cursor: grab;
+  transition: 0.6s ease-in-out;
+  transform: rotateX(20deg);
+}
+
+.rotate {
+  transform: rotateY(180deg);
+}
+.cardframe {
   border-radius: 1.5vmax;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition-duration: 0.2s;
+}
+
+.back,
+.front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.back {
+  background-color: #bbb;
+  color: black;
+}
+.front {
+  transform: rotateY(180deg);
 }
 
 .cardtop {
@@ -67,39 +105,77 @@ button {
 .texture {
   position: absolute;
   border-radius: 1vmax;
-  background-repeat: repeat;
   background: url(https://media.macphun.com/img/uploads/customer/blog/1541154551/15411554815bdc2a99267047.50976593.jpg?q=85&w=1680);
   mix-blend-mode: overlay;
-  opacity: 50%;
+  opacity: 100%;
   pointer-events: none;
 }
 
-.CommonGlow {
+.Common:hover {
   box-shadow: 0 0 20px 10px white;
-  transition-duration: 0.2s;
-  width: 16vmax;
-  height: 26.66vmax;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
 }
-.UncommonGlow {
+.Uncommon:hover {
   box-shadow: 0 0 20px 10px green;
-  transition-duration: 0.2s;
-  width: 16vmax;
-  height: 26.66vmax;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
 }
-.RareGlow {
-  box-shadow: 0 0 20px 10px blue;
-  transition-duration: 0.2s;
-  width: 16vmax;
-  height: 26.66vmax;
+.Rare:hover {
+  box-shadow: 0 0 30px 10px #fff, /* inner white */ 0 0 30px 30px blue,
+    /* middle magenta */ 0 0 20px 10px cyan; /* outer cyan */
+
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
 }
 
-.Ultra-RareGlow {
-  box-shadow: 0 0 50px 30px gold;
-  transition-duration: 0.2s;
-  width: 16vmax;
-  height: 26.66vmax;
+.Ultra-Rare:hover {
+  box-shadow: 0 0 30px 15px #fff, 0 0 50px 30px gold, 0 0 70px 45px goldenrod;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
 }
 
 .typeicon {
-  opacity: 50%;
+  opacity: 70%;
+}
+
+.Tempest {
+  background: url(https://i.pinimg.com/originals/c6/a8/9d/c6a89d990f0055ec4035db19c0df0668.jpg)
+    no-repeat center center / cover;
+}
+.Phoenix {
+  background: url(https://i.pinimg.com/originals/4e/43/09/4e4309728598bfc1b06d6681e38502ff.jpg)
+    no-repeat center center / cover;
+}
+.Phantom {
+  background: url(https://i.pinimg.com/originals/52/e4/88/52e48892c471b8575b71b2ec81d21538.jpg)
+    no-repeat center center / cover;
+}
+.Scorch {
+  background: url(https://i.pinimg.com/originals/4f/9c/ef/4f9cef22478edd093eb6a74182758c6c.jpg)
+    no-repeat center center / cover;
+}
+.Viper {
+  background: url(https://i.pinimg.com/736x/cd/3e/2b/cd3e2bffa7f01d4b9ab8fc4a016bef93.jpg)
+    no-repeat center center / cover;
+}
+.Nightrunner {
+  background: url(https://i.pinimg.com/736x/cd/3e/2b/cd3e2bffa7f01d4b9ab8fc4a016bef93.jpg)
+    no-repeat center center / cover;
+}
+.Archangel {
+  background: url(https://i.pinimg.com/736x/cd/3e/2b/cd3e2bffa7f01d4b9ab8fc4a016bef93.jpg)
+    no-repeat center center / cover;
+}
+.Ghost {
+  background: url(https://i.pinimg.com/736x/cd/3e/2b/cd3e2bffa7f01d4b9ab8fc4a016bef93.jpg)
+    no-repeat center center / cover;
+}
+.Raiden {
+  background: url(https://i.pinimg.com/originals/71/ff/e2/71ffe2e22795d6ca9b80da4e9fd154c8.jpg)
+    no-repeat center center / cover;
+}
+.Nomad {
+  background: url(https://i.pinimg.com/originals/50/fa/c7/50fac7e383458e9360faa499f27819d1.jpg)
+    no-repeat center center / cover;
 }
