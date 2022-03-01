@@ -26,7 +26,12 @@ export default class App extends React.Component {
                 onMouseLeave={() => this.onLeaveHover(index)}
                 onClick={() => this.onClick(index)}
               >
-                <div className={`cardframe back`}></div>
+                <div className={`cardframe back`}>
+                  <img
+                    src="https://github.com/Bleacheddata/team-willow/blob/main/src/images/back_icon.png?raw=true"
+                    width="200px"
+                  />
+                </div>
                 <div
                   key={index + "Front"}
                   id={index + "Front"}

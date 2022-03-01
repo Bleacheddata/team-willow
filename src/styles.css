@@ -65,12 +65,13 @@ button {
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
 .back {
-  background-color: #bbb;
+  background: linear-gradient(to bottom, #c39738, #deb761, #c39738);
+  background: linear-gradient(to bottom, #bcc6cc, #eee, #bcc6cc);
   color: black;
 }
 .front {
