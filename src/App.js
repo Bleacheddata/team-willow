@@ -34,12 +34,9 @@ export default class App extends React.Component {
               </div>
               <div className="cardmid white">
                 <img
-                  className="typeicon"
                   src="https://raw.githubusercontent.com/Bleacheddata/team-willow/main/src/images/generator_icon.svg"
-                  alt=""
-                  width="130px"
+                  width="90px"
                 />
-                <br />
               </div>
 
               <div className="power white"> {i.power} </div>
