@@ -99,3 +99,7 @@ button {
   width: 16vmax;
   height: 26.66vmax;
 }
+
+.typeicon {
+  opacity: 50%;
+}

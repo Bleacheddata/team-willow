@@ -34,8 +34,10 @@ export default class App extends React.Component {
               </div>
               <div className="cardmid white">
                 <img
-                  src="raw.githubusercontent.com/Bleacheddata/team-willow/main/src/images/generator_icon.svg"
+                  className="typeicon"
+                  src="https://raw.githubusercontent.com/Bleacheddata/team-willow/main/src/images/generator_icon.svg"
                   alt=""
+                  width="130px"
                 />
                 <br />
               </div>
