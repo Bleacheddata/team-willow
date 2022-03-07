@@ -10,14 +10,18 @@
 html {
   height: 100%;
 }
+
 body {
   font-family: "Retro Team";
-  background-image: url(https://rawcdn.githack.com/Bleacheddata/team-willow/6f3d4240acee7d1c6b73fd40599dddc40d15497b/src/images/menu.jpg);
+  transform-style: preserve-3d;
+  width: 100vw;
+  height: 100vh;
   background-blend-mode: screen, overlay, hard-light, color-burn, color-dodge,
     normal;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100%;
+  background-image: url(https://rawcdn.githack.com/Bleacheddata/team-willow/6f3d4240acee7d1c6b73fd40599dddc40d15497b/src/images/menu.jpg);
 }
 .white {
   color: white;

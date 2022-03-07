@@ -1,76 +1,32 @@
 import "./styles.css";
 import { getCard } from "./cards.js";
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoginView from "./login/LoginView";
+import RegisterView from "./login/RegisterView";
+
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { pack: [] };
-    this.openPack = this.openPack.bind(this);
-    this.onHover = this.onHover.bind(this);
-    this.onLeaveHover = this.onLeaveHover.bind(this);
-    this.onClick = this.onClick.bind(this);
-    this.onMouseMove = this.onMouseMove.bind(this);
-  }
   render() {
     return (
-      <div className="App">
-        <button onClick={this.openPack}>
-          <h1>Open Card Pack</h1>
-        </button>
-        <div className="cards-container">
-          {this.state.pack.map((i, index) => (
-            <div className={`card`}>
-              <div
-                id={index}
-                className={`card-content ${i.rarity}`}
-                onMouseEnter={() => this.onHover(index)}
-                onMouseLeave={() => this.onLeaveHover(index)}
-                onClick={() => this.onClick(index)}
-              >
-                <div className={`cardframe back`}>
-                  <img
-                    className="back-icon"
-                    src="https://uploads.codesandbox.io/uploads/user/adb5b6ff-3d37-4b52-b8d5-25098bc45d0a/DoYE-back_icon.png
-
-                    "
-                    width="200px"
-                    alt=""
-                  />
-                </div>
-
-                <div
-                  onMouseMove={(event) => {
-                    this.onMouseMove(event, index);
-                  }}
-                  key={index + "Front"}
-                  id={index + "Front"}
-                  className={`cardframe front ${i.name}`}
-                >
-                  <div className="cardtop white">
-                    {i.rarity} <br />
-                    {i.name}
-                  </div>
-                  <div className="cardmid white">
-                    <img
-                      className="front-icon"
-                      src="https://github.com/Bleacheddata/team-willow/blob/main/src/images/icon.png?raw=true"
-                      width="120px"
-                      alt=""
-                    />
-                  </div>
-
-                  <div className="power white"> {i.power} </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginView />}></Route>
+        </Routes>
+      </BrowserRouter>
     );
   }
-  onMouseMove(event, id) {
-    console.log("X =" + event.clientX);
-    console.log("Y =" + event.clientY);
+
+  onMouseMove(event) {
+    // let window = document.getElementById("App");
+    // let windowRect = window.getBoundingClientRect();
+    // let rotateX = -(event.clientY - windowRect.y - windowRect.height / 2);
+    // let rotateY = event.clientX - windowRect.x - windowRect.width / 2;
+    // console.log("X =" + event.clientX);
+    // console.log("Y =" + event.clientY);
+    // window.transform = `
+    //    rotateX(
+    //   ${rotateX}deg) rotateY(${rotateY}deg})`;
+    // console.log(window.transform);
   }
   onHover(id) {
     let card = document.getElementById(id);
@@ -95,5 +51,75 @@ export default class App extends React.Component {
 
       this.setState({ pack: this.state.pack.concat(cardPack) });
     }
+  }
+}
+
+class CardOpening extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pack: []
+    };
+    this.openPack = this.openPack.bind(this);
+    this.onHover = this.onHover.bind(this);
+    this.onLeaveHover = this.onLeaveHover.bind(this);
+    this.onClick = this.onClick.bind(this);
+    this.onMouseMove = this.onMouseMove.bind(this);
+  }
+  render() {
+    return (
+      <div className="CardOpening">
+        <button onClick={this.openPack}>
+          <h1>Open Card Pack</h1>
+        </button>
+        <div className="cards-container">
+          {this.state.pack.map((i, index) => (
+            <div className={`card`}>
+              <div
+                id={index}
+                className={`card-content ${i.rarity}`}
+                onMouseEnter={() => this.onHover(index)}
+                onMouseLeave={() => this.onLeaveHover(index)}
+                onClick={() => this.onClick(index)}
+              >
+                <div className={`cardframe back`}>
+                  <img
+                    className="back-icon"
+                    src="https://uploads.codesandbox.io/uploads/user/adb5b6ff-3d37-4b52-b8d5-25098bc45d0a/DoYE-back_icon.png
+            "
+                    width="200px"
+                    alt=""
+                  />
+                </div>
+
+                <div
+                  onMouseMove={(event) => {
+                    this.onMouseMove(event, index);
+                  }}
+                  key={index + "Front"}
+                  id={index + "Front"}
+                  className={`cardframe front ${i.name}`}
+                >
+                  <div className="cardtop white">
+                    {i.rarity} <br />
+                    {i.name}
+                  </div>
+                  <div className="cardmid white">
+                    <img
+                      className="front-icon"
+                      src="https://raw.githubusercontent.com/Bleacheddata/team-willow/4c8078c552029b1113077c393bce2b10f59d87de/src/images/generatorIcon.svg"
+                      width="120px"
+                      alt=""
+                    />
+                  </div>
+
+                  <div className="power white"> {i.power} </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   }
 }
