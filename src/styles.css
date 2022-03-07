@@ -245,7 +245,8 @@ button {
   mix-blend-mode: multiply;
 }
 .front-icon {
-  mix-blend-mode: screen;
+  opacity: 100%;
+  mix-blend-mode: overlay;
 }
 
 .Tempest {
