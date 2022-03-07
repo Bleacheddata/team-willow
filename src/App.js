@@ -9,6 +9,7 @@ export default class App extends React.Component {
     this.onHover = this.onHover.bind(this);
     this.onLeaveHover = this.onLeaveHover.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.onMouseMove = this.onMouseMove.bind(this);
   }
   render() {
     return (
@@ -28,13 +29,19 @@ export default class App extends React.Component {
               >
                 <div className={`cardframe back`}>
                   <img
-                    src="https://uploads.codesandbox.io/uploads/user/adb5b6ff-3d37-4b52-b8d5-25098bc45d0a/GbF0-back_icon.png
+                    className="back-icon"
+                    src="https://uploads.codesandbox.io/uploads/user/adb5b6ff-3d37-4b52-b8d5-25098bc45d0a/DoYE-back_icon.png
+
                     "
                     width="200px"
                     alt=""
                   />
                 </div>
+
                 <div
+                  onMouseMove={(event) => {
+                    this.onMouseMove(event, index);
+                  }}
                   key={index + "Front"}
                   id={index + "Front"}
                   className={`cardframe front ${i.name}`}
@@ -45,13 +52,12 @@ export default class App extends React.Component {
                   </div>
                   <div className="cardmid white">
                     <img
-                      className="typeicon"
+                      className="front-icon"
                       src="https://raw.githubusercontent.com/Bleacheddata/team-willow/4c8078c552029b1113077c393bce2b10f59d87de/src/images/generatorIcon.svg"
                       width="120px"
                       alt=""
                     />
                   </div>
-                  <div id={index + "Texture"} className="texture"></div>
 
                   <div className="power white"> {i.power} </div>
                 </div>
@@ -61,6 +67,10 @@ export default class App extends React.Component {
         </div>
       </div>
     );
+  }
+  onMouseMove(event, id) {
+    console.log("X =" + event.clientX);
+    console.log("Y =" + event.clientY);
   }
   onHover(id) {
     let card = document.getElementById(id);

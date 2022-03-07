@@ -1,8 +1,17 @@
+@font-face {
+  font-family: Personal Services;
+  src: url(https://github.com/Bleacheddata/team-willow/blob/main/src/fonts/Personal%20Services.ttf?raw=true);
+}
+@font-face {
+  font-family: Retro Team;
+  src: url(https://github.com/Bleacheddata/team-willow/blob/main/src/fonts/Retro%20Team.otf?raw=true);
+}
+
 html {
   height: 100%;
 }
 body {
-  font-family: "Chelsea Market", cursive;
+  font-family: "Retro Team";
   background-image: url(https://rawcdn.githack.com/Bleacheddata/team-willow/6f3d4240acee7d1c6b73fd40599dddc40d15497b/src/images/menu.jpg);
   background-blend-mode: screen, overlay, hard-light, color-burn, color-dodge,
     normal;
@@ -20,7 +29,7 @@ body {
   justify-content: center;
 }
 button {
-  font-family: "Chelsea Market", cursive;
+  font-family: "Retro Team";
 }
 .cards-container {
   display: flex;
@@ -34,26 +43,27 @@ button {
   perspective: 1000px;
   transition-duration: 2s;
 }
+
 .card-content {
   position: relative;
-  border-radius: 1.5vmax;
+  border-radius: 1.3rem;
   width: 100%;
   height: 100%;
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
+
 .hover {
   cursor: grab;
   transition: 0.6s ease-in-out;
-  transform: rotateX(20deg);
 }
 
 .rotate {
   transform: rotateY(180deg);
 }
 .cardframe {
-  border-radius: 1.5vmax;
+  border-radius: 1.3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -101,13 +111,110 @@ button {
   bottom: 82.32%;
 }
 
-.texture {
+.cardframe:after {
+  content: "";
   position: absolute;
-  border-radius: 1vmax;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 1.3rem;
+  height: 100%;
+  opacity: 50%;
+  mix-blend-mode: multiply;
   background: url(https://media.macphun.com/img/uploads/customer/blog/1541154551/15411554815bdc2a99267047.50976593.jpg?q=85&w=1680);
-  mix-blend-mode: overlay;
-  opacity: 100%;
-  pointer-events: none;
+}
+
+.Common::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  background: linear-gradient(
+    45deg,
+    rgb(255, 255, 255),
+    rgb(158, 158, 158),
+    rgb(233, 233, 233),
+    #f7f7f7,
+    #807c7a
+  );
+  border-radius: 2rem;
+  background-size: 400%;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  z-index: -1;
+}
+.Uncommon::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  background: linear-gradient(
+    45deg,
+    rgb(4, 155, 24),
+    rgb(14, 182, 36),
+    rgb(172, 240, 225),
+    #cecece,
+    #2fff4b
+  );
+  border-radius: 2rem;
+  background-size: 400%;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  z-index: -1;
+}
+.Rare::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  background: linear-gradient(
+    45deg,
+    rgb(0, 81, 255),
+    rgb(11, 178, 184),
+    rgb(184, 216, 230),
+    #140b94,
+    #902fff
+  );
+  border-radius: 2rem;
+  background-size: 400%;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  z-index: -1;
+}
+
+.Ultra-Rare::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  background: linear-gradient(
+    45deg,
+    gold,
+    #bb510b,
+    rgb(255, 255, 255),
+    goldenrod,
+    #ff8d2f
+  );
+  border-radius: 2rem;
+  background-size: 300%;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  z-index: -1;
+  animation: animateEdgeBackground 30s ease-in-out infinite;
+}
+
+@keyframes animateEdgeBackground {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
 }
 
 .Common:hover {
@@ -117,13 +224,13 @@ button {
 }
 .Uncommon:hover {
   box-shadow: 0 0 20px 10px green;
+
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
 }
 .Rare:hover {
   box-shadow: 0 0 30px 10px #fff, /* inner white */ 0 0 30px 30px blue,
     /* middle magenta */ 0 0 20px 10px cyan; /* outer cyan */
-
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
 }
@@ -134,8 +241,11 @@ button {
   transition-timing-function: ease-in-out;
 }
 
-.typeicon {
-  opacity: 70%;
+.back-icon {
+  mix-blend-mode: multiply;
+}
+.front-icon {
+  mix-blend-mode: screen;
 }
 
 .Tempest {
@@ -155,19 +265,19 @@ button {
     no-repeat center center / cover;
 }
 .Viper {
-  background: url(https://i.pinimg.com/736x/cd/3e/2b/cd3e2bffa7f01d4b9ab8fc4a016bef93.jpg)
+  background: url(https://i.pinimg.com/originals/94/62/11/946211b32aedb9d1a21adfba4adc81df.jpg)
     no-repeat center center / cover;
 }
 .Nightrunner {
-  background: url(https://i.pinimg.com/736x/cd/3e/2b/cd3e2bffa7f01d4b9ab8fc4a016bef93.jpg)
+  background: url(https://i.pinimg.com/736x/18/ed/74/18ed74b95a0c3856087ff62b9de76175--cyberpunk-character-shooter-games.jpg)
     no-repeat center center / cover;
 }
 .Archangel {
-  background: url(https://i.pinimg.com/736x/cd/3e/2b/cd3e2bffa7f01d4b9ab8fc4a016bef93.jpg)
+  background: url(https://cdna.artstation.com/p/assets/images/images/018/922/450/medium/aimy-anne-calilung-character-post-apoc-female-b.jpg?1561277164)
     no-repeat center center / cover;
 }
 .Ghost {
-  background: url(https://i.pinimg.com/736x/cd/3e/2b/cd3e2bffa7f01d4b9ab8fc4a016bef93.jpg)
+  background: url(https://i.pinimg.com/originals/6b/f4/da/6bf4da99007d304f76d46ff8e7f7ad46.jpg)
     no-repeat center center / cover;
 }
 .Raiden {
