@@ -54,7 +54,7 @@ class LoginView extends Component {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h3" variant="h7">
-              Welcome to MetaFitness!
+              DUEL LENGENDS!
             </Typography>
 
             <div>
@@ -99,6 +99,15 @@ class LoginView extends Component {
                 onClick={(event) => this.handleClick(event)}
               >
                 Sign In
+              </Button>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={(event) => this.handleClick(event)}
+              >
+                Sign Up
               </Button>
             </div>
           </Box>

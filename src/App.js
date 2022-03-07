@@ -10,7 +10,8 @@ export default class App extends React.Component {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginView />}></Route>
+          {/* <Route path="/" element={<LoginView />}></Route> */}
+          <Route path="/" element={<RegisterView />}></Route>
         </Routes>
       </BrowserRouter>
     );
