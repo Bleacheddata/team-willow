@@ -1,5 +1,4 @@
 import "./styles.css";
-import { getCard } from "./cards.js";
 import React from "react";
 import { Navbar, Container } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -14,7 +13,7 @@ export default class App extends React.Component {
         <Routes>
           <Route path="/" element={<Home />}></Route>
 
-          <Route path="/cardopening" element={<CardOpening />}></Route>
+          <Route path="/cardopening" element={<CardOpening/>}></Route>
 
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
@@ -28,7 +27,7 @@ class Home extends React.Component {
     return (
       <div className="Home">
         {" "}
-        <h1>Welcome to the game </h1>
+        <h1>Welcome to the game</h1>
         <Link to="/cardopening">Open cards</Link>
       </div>
     );
@@ -59,17 +58,20 @@ class CardOpening extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pack: []
+      pack: [],
     };
+
+  
     this.openPack = this.openPack.bind(this);
     this.onHover = this.onHover.bind(this);
     this.onLeaveHover = this.onLeaveHover.bind(this);
     this.onClick = this.onClick.bind(this);
-    this.onMouseMove = this.onMouseMove.bind(this);
   }
+  
   render() {
     return (
       <div className="CardOpening">
+      
         <button onClick={this.openPack}>Open Card Pack</button>
         <div className="cards-container">
           {this.state.pack.map((i, index) => (
@@ -92,9 +94,6 @@ class CardOpening extends React.Component {
                 </div>
 
                 <div
-                  onMouseMove={(event) => {
-                    this.onMouseMove(event, index);
-                  }}
                   key={index + "Front"}
                   id={index + "Front"}
                   className={`cardframe front ${i.name}`}
@@ -122,18 +121,7 @@ class CardOpening extends React.Component {
     );
   }
 
-  onMouseMove(event) {
-    // let window = document.getElementById("App");
-    // let windowRect = window.getBoundingClientRect();
-    // let rotateX = -(event.clientY - windowRect.y - windowRect.height / 2);
-    // let rotateY = event.clientX - windowRect.x - windowRect.width / 2;
-    // console.log("X =" + event.clientX);
-    // console.log("Y =" + event.clientY);
-    // window.transform = `
-    //    rotateX(
-    //   ${rotateX}deg) rotateY(${rotateY}deg})`;
-    // console.log(window.transform);
-  }
+  
   onHover(id) {
     let card = document.getElementById(id);
     card.classList.add("hover");
@@ -148,14 +136,25 @@ class CardOpening extends React.Component {
     card.classList.add("rotate");
   }
 
-  openPack() {
-    if (this.state.pack.length === 0) {
-      let cardPack = [];
-      for (let i = 0; i < 5; i++) {
-        cardPack = cardPack.concat(getCard());
-      }
+  openPack(event) {
+    event.target.setAttribute("disabled", "disabled");
 
-      this.setState({ pack: this.state.pack.concat(cardPack) });
-    }
+    fetch("http://127.0.0.1:8001/cardpack")
+    .then(res => res.json())
+    .then(
+      (result) => {
+        this.setState({
+          isLoaded: true,
+          pack: result
+        });
+        console.log(this.state.pack);
+      },
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    )
   }
 }
