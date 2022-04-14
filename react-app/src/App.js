@@ -1,9 +1,14 @@
 import "./styles.css";
 import React from "react";
+import ReactDOM from 'react-dom';
+// import { Switch, Redirect, Route } from 'react-router';
+import { Routes, Redirect, Route } from 'react-router';
+
 import { Navbar, Container } from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Link } from "react-router-dom";
 import Login from "./login/Login";
 import Register from "./login/Register";
+import './login/Login.css';
 
 export default class App extends React.Component {
   render() {
@@ -14,10 +19,16 @@ export default class App extends React.Component {
           <Route path="/" element={<Home />}></Route>
 
           <Route path="/cardopening" element={<CardOpening/>}></Route>
-
+            <Route path='/dashboard' component={Home} />
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
         </Routes>
+        {/*<Switch>*/}
+        {/*  <Route exact path='/' component={Login} />*/}
+        {/*  <Route exact path='/register' component={Register} />*/}
+        {/*  <Route path='/dashboard' component={Home} />*/}
+        {/*  /!* <Route component={NotFound}/> *!/*/}
+        {/*</Switch>*/}
       </BrowserRouter>
     );
   }
