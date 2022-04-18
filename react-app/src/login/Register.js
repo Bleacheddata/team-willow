@@ -15,36 +15,46 @@ export default class Register extends React.Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state.username);
   }
  
 
   register = () => {
 
-    axios.post('http://localhost:8001/register', {
-      username: this.state.username,
-      password: this.state.password,
-    }).then((res) => {
-      swal({
-        text: res.data.title,
-        icon: "success",
-        type: "success"
+    
+    if(this.state.confirm_password === this.state.password) {
+      axios.post('http://localhost:8001/register', {
+        username: this.state.username,
+        password: this.state.password,
+      }).then((res) => {
+        swal({
+          text: res.data.title,
+          icon: "success",
+          type: "success"
+        });
+        this.props.history.push('/');
+      }).catch((err) => {
+        swal({
+          text: err.response.data.errorMessage,
+          icon: "error",
+          type: "error"
+        });
       });
-      this.props.history.push('/');
-    }).catch((err) => {
+    }
+    else {
       swal({
-        text: err.response.data.errorMessage,
+        text: "Please confirm your password",
         icon: "error",
         type: "error"
       });
-    });
+    }
+   
   }
 
   render() {
     return (
         <div className = "Register">
         
-            <h2>Register</h2>
+            <h1>Register</h1>
         
 
           <div>

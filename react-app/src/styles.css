@@ -24,6 +24,9 @@ h1 {
   font-size: 5vw;
 }
 
+Link {
+  text-decoration: none;
+}
 .Home, .Login, .Register, .CardPacks, .NotFound {
   display: flex;
   flex-direction: column;

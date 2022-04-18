@@ -49,7 +49,7 @@ export default class Login extends React.Component {
     return (
         <div className = "Login">
           <div>
-            <h2>Login</h2>
+            <h1>Login</h1>
           </div>
 
           <div>
