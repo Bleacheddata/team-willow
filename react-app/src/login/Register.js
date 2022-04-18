@@ -13,7 +13,11 @@ export default class Register extends React.Component {
     };
   }
 
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+    console.log(this.state.username);
+  }
+ 
 
   register = () => {
 
@@ -38,10 +42,10 @@ export default class Register extends React.Component {
 
   render() {
     return (
-        <div style={{ marginTop: '200px' }}>
-          <div>
+        <div className = "Register">
+        
             <h2>Register</h2>
-          </div>
+        
 
           <div>
             <TextField

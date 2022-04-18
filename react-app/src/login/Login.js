@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
 import { Button, TextField, Link } from '@material-ui/core';
-const axios = require('axios');
+import {Navigate} from "react-router-dom";
+import axios from "axios";
 const bcrypt = require('bcryptjs');
 var salt = bcrypt.genSaltSync(10);
 
@@ -12,11 +13,14 @@ export default class Login extends React.Component {
       username: '',
       password: ''
     };
+
+    this.onChange = this.onChange.bind(this);
+    this.logIn = this.logIn.bind(this);
   }
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-  login = () => {
+  logIn = () => {
 
     const pwd = bcrypt.hashSync(this.state.password, salt);
 
@@ -25,15 +29,18 @@ export default class Login extends React.Component {
       password: pwd,
     }).then((res) => {
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user_id', res.data.id);
-      // this.props.history.push('/dashboard');
-      this.props.history.push('/Home');
+      swal({
+        text: "Logged in successfully",
+        icon: "success",
+      });
+  
+
     }).catch((err) => {
       if (err.response && err.response.data && err.response.data.errorMessage) {
+        localStorage.clear();
         swal({
           text: err.response.data.errorMessage,
           icon: "error",
-          type: "error"
         });
       }
     });
@@ -41,7 +48,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
-        <div style={{ marginTop: '200px' }}>
+        <div className = "Login">
           <div>
             <h2>Login</h2>
           </div>
@@ -75,7 +82,7 @@ export default class Login extends React.Component {
                 color="primary"
                 size="small"
                 disabled={this.state.username == '' && this.state.password == ''}
-                onClick={this.login}
+                onClick={this.logIn}
             >
               Login
             </Button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
