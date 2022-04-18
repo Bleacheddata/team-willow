@@ -36,12 +36,16 @@ export default class CardPacks extends React.Component {
         <div className="CardPacks">
          
          <div className = "cardpack-buttons">
+         <h1>{this.state.packCount} card packs remaining</h1>
+         <div>
          <button>Buy Card Packs</button>
-           <h1>{this.state.packCount}</h1>
           <button id = "btn-packopen" onClick={this.openPack}>Open Card Pack</button>
+          </div>
+          </div>
           <div className="cards-container">
-            {this.state.cardPack.map((i, index) => (
-              <div className={`card`}>
+            {this.state.cardPack != [] && 
+             this.state.cardPack.map((i, index) => (
+              <div key = {`card ${i.index}`} className={`card`}>
                 <div
                   id={index}
                   className={`card-content ${i.rarity}`}
@@ -64,6 +68,7 @@ export default class CardPacks extends React.Component {
                     id={index + "Front"}
                     className={`cardframe front ${i.name}`}
                   >
+                    <div className = "card-content">
                     <div className="cardtop white">
                       {i.rarity} <br />
                       {i.name}
@@ -78,13 +83,15 @@ export default class CardPacks extends React.Component {
                     </div>
   
                     <div className="power white"> {i.power} </div>
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
+           
           </div>
         </div>
-         </div>
+       
          
       );
     }
@@ -109,12 +116,14 @@ export default class CardPacks extends React.Component {
 
   async openPack(event) {
     if(this.state.packCount>=1) {
+     
     axios.put('http://127.0.0.1:8001/user/cardpack', "",{
       headers: {
         'Authorization': localStorage.getItem("token")
       }
     })
     .then((res) => {
+      this.setState({ cardPack: []});
       this.setState({
                 cardPack: res.data.concat(),
                 packCount : this.state.packCount-1
@@ -128,6 +137,7 @@ export default class CardPacks extends React.Component {
   else if (this.state.packCount<=0) {
     event.target.setAttribute("disabled", "disabled");
   }
+  
 
   
   

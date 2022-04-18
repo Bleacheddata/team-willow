@@ -29,10 +29,9 @@ export default class Login extends React.Component {
       password: pwd,
     }).then((res) => {
       localStorage.setItem('token', res.data.token);
-      swal({
-        text: "Logged in successfully",
-        icon: "success",
-      });
+    
+      window.location.replace("/");
+
   
 
     }).catch((err) => {
