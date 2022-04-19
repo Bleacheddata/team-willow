@@ -1,11 +1,13 @@
 import React from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 export default class CardPacks extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
         cardPack:  [],
-        packCount: this.props.packCount
+        packCount: this.props.packCount,
+        gold: this.props.gold
       };
   
     
@@ -13,6 +15,7 @@ export default class CardPacks extends React.Component {
       this.onHover = this.onHover.bind(this);
       this.onLeaveHover = this.onLeaveHover.bind(this);
       this.onClick = this.onClick.bind(this);
+      this.buyPack = this.buyPack.bind(this);
     }
 
       componentDidMount() {
@@ -20,12 +23,17 @@ export default class CardPacks extends React.Component {
         
      
         this.setState({
-          packCount: this.props.packCount
+          packCount: this.props.packCount,
+          gold : this.props.gold
         });
         console.log(this.state.packCount);
         if(this.state.packCount<=0) {
           document.getElementById("btn-packopen").setAttribute("disabled", "disabled");
         }
+        if(this.state.gold<100) {
+          document.getElementById("btn-buypack").setAttribute("disabled", "disabled");
+        }
+
      
       
       
@@ -38,7 +46,7 @@ export default class CardPacks extends React.Component {
          <div className = "cardpack-buttons">
          <h1>{this.state.packCount} card packs remaining</h1>
          <div>
-         <button>Buy Card Packs</button>
+         <button id = "btn-buypack" onClick={this.buyPack}>Buy Card Packs</button>
           <button id = "btn-packopen" onClick={this.openPack}>Open Card Pack</button>
           </div>
           </div>
@@ -70,7 +78,7 @@ export default class CardPacks extends React.Component {
                   >
                  
                     <div className = "card-front-content">
-                    <div className="power white"> {i.power} </div>
+                    <h2 className="power white"> {i.power} </h2>
                     <div className="cardmid white">
                       <img
                         className="front-icon"
@@ -80,10 +88,10 @@ export default class CardPacks extends React.Component {
                       />
                     </div>
   
-                    <div className="cardbottom white">
+                    <h2 className="cardbottom white">
                       {i.rarity} <br />
                       {i.name}
-                    </div>
+                    </h2>
                     </div>
                   </div>
                 </div>
@@ -114,6 +122,32 @@ export default class CardPacks extends React.Component {
 
 
   
+    async buyPack(event) {
+
+       if (this.state.gold>100) {
+      axios.get('http://127.0.0.1:8001/user/buypack',{
+        headers: {
+          'Authorization': localStorage.getItem("token")
+        }
+      })
+      .then((res) => {
+        swal({
+          text: res.data,
+          icon: "success"
+        });
+      })
+      .catch((err) => {
+        swal({
+          text: err,
+          icon: "error",
+        });
+      })
+    }
+      else if (this.state.gold<100) {
+        event.target.setAttribute("disabled", "disabled");
+      }
+      
+    }
 
   async openPack(event) {
     if(this.state.packCount>=1) {

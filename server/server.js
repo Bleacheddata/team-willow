@@ -127,6 +127,63 @@ app.get("/user/packcount", function (req, res) {
 
 
 });
+
+
+app.get("/user/buypack", function (req, res) {
+
+    console.log(req.headers.authorization);
+    let decodedToken;
+    let token = req.headers.authorization;
+    jwt.verify(token, 'shhhhh11111', function (err, decoded) {
+        if (err) {
+
+            console.log(err);
+
+        }
+        decodedToken = decoded;
+    });
+
+    if (decodedToken != undefined) {
+
+        user.findOne({
+            username: decodedToken.user
+        }, function (err, result) {
+            if (err) throw err;
+            console.log(result);
+            gold = result.gold;
+
+            if(gold >= 100) {
+
+                user.updateOne({
+                    username: decodedToken.user
+                }, {
+                    $inc: {
+                        gold: -100,
+                        packs: +1
+                        
+                    }              
+                }, function (err) {
+                    if (err)  {
+                        res.json(err);
+                    } 
+
+                    res.json("Pack bought successfully");
+                })
+            }
+
+
+        })
+
+    } else {
+        res.status(400).send({
+            message: 'Error purchasing pack!'
+         });
+    }
+
+
+})
+
+
 app.put("/user/cardpack", function (req, res) {
     console.log(req.headers.authorization);
     let decodedToken;
@@ -171,7 +228,13 @@ app.put("/user/cardpack", function (req, res) {
                             }
                         }
                     }, function (err) {
-                        if (err) throw err;
+                        if (err) {
+                            res.json(err);
+
+                        }
+
+
+
                     })
 
                 })

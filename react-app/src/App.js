@@ -18,7 +18,8 @@ export default class App extends React.Component {
     this.updateLogIn = this.updateLogIn.bind(this)
     this.state = {
       loggedIn : false,
-      packCount : 0
+      packCount : 0,
+      gold : 0
     }
   }
 
@@ -48,7 +49,7 @@ export default class App extends React.Component {
       .then((res) => {
         console.log(token);
        console.log(res);
-       this.setState({loggedIn : true, packCount: res.data.packs});
+       this.setState({loggedIn : true, packCount: res.data.packs, gold: res.data.gold});
       })
       .catch((error) => {
         console.error(error);
@@ -63,9 +64,9 @@ export default class App extends React.Component {
     return (
       <BrowserRouter>
 
-      <NaviBar/>
       
-        {/* <NavBar loggedIn = {this.state.loggedIn} updateLogIn = {this.updateLogIn}/> */}
+      
+        <NavBar loggedIn = {this.state.loggedIn} updateLogIn = {this.updateLogIn}/>
 
        
         <Routes>
@@ -79,7 +80,7 @@ export default class App extends React.Component {
           </>
           }
           {this.state.loggedIn === true && 
-          <Route exact path="/user/cardpacks" element={<CardPacks packCount = {this.state.packCount}/>}></Route>
+          <Route exact path="/user/cardpacks" element={<CardPacks packCount = {this.state.packCount} gold = {this.state.gold}/>}></Route>
           }
 
         </Routes>
