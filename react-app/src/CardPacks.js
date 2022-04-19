@@ -58,7 +58,7 @@ export default class CardPacks extends React.Component {
                       className="back-icon"
                       src="https://uploads.codesandbox.io/uploads/user/adb5b6ff-3d37-4b52-b8d5-25098bc45d0a/DoYE-back_icon.png
               "
-                      width="200px"
+                      width="150px"
                       alt=""
                     />
                   </div>
@@ -68,21 +68,22 @@ export default class CardPacks extends React.Component {
                     id={index + "Front"}
                     className={`cardframe front ${i.name}`}
                   >
-                    <div className = "card-content">
-                    <div className="cardtop white">
-                      {i.rarity} <br />
-                      {i.name}
-                    </div>
+                 
+                    <div className = "card-front-content">
+                    <div className="power white"> {i.power} </div>
                     <div className="cardmid white">
                       <img
                         className="front-icon"
                         src="https://raw.githubusercontent.com/Bleacheddata/team-willow/4c8078c552029b1113077c393bce2b10f59d87de/src/images/generatorIcon.svg"
-                        width="120px"
+                        width="100px"
                         alt=""
                       />
                     </div>
   
-                    <div className="power white"> {i.power} </div>
+                    <div className="cardbottom white">
+                      {i.rarity} <br />
+                      {i.name}
+                    </div>
                     </div>
                   </div>
                 </div>

@@ -9,6 +9,7 @@ import Login from "./login/Login";
 import Register from "./login/Register";
 import CardPacks from "./CardPacks";
 import "./styles.css";
+import NaviBar from "./NaviBar";
 export default class App extends React.Component {
   constructor(props){
     super(props);
@@ -61,8 +62,10 @@ export default class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
+
+      <NaviBar/>
       
-        <NavBar loggedIn = {this.state.loggedIn} updateLogIn = {this.updateLogIn}/>
+        {/* <NavBar loggedIn = {this.state.loggedIn} updateLogIn = {this.updateLogIn}/> */}
 
        
         <Routes>
@@ -118,7 +121,7 @@ class Home extends React.Component {
        }
 
        {this.props.loggedIn === false && 
-        <Link to="/login">Log In</Link>
+        <Link to="/login">Get Started</Link>
        }  
       </div>
     );
@@ -139,9 +142,11 @@ class NavBar extends React.Component {
     return (
       <div className="NavBar">
         
+
+        <Link to="/">Home</Link>
         
         {this.props.loggedIn === false && 
-         <button>Log In</button>
+         <Link to="/login">Log In</Link>
         }
 
         {this.props.loggedIn === true && 

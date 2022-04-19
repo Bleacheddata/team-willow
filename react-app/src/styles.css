@@ -1,13 +1,12 @@
-
 @font-face {
   font-family: Hackney;
   src: url(./fonts/HackneyPersonalUseOnly.ttf);
 }
 
 
-*{
+* {
   font-size: 2vw;
-  
+
 }
 
 body {
@@ -24,15 +23,25 @@ h1 {
   font-size: 5vw;
 }
 
-Link {
-  text-decoration: none;
-}
-.Home, .Login, .Register, .CardPacks, .NotFound {
+
+.Home,
+.Login,
+.Register,
+.CardPacks,
+.NotFound {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 50vh;
+  text-align: center;
+}
+
+.NavBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   text-align: center;
 }
 
@@ -47,14 +56,15 @@ Link {
   transition-duration: 0.5s;
 }
 
-.cardpack-buttons > button {
-margin: 5%;
+.cardpack-buttons>button {
+  margin: 5%;
 
 }
 
 .white {
   color: white;
 }
+
 .LoginForm {
   display: flex;
   flex-direction: column;
@@ -66,7 +76,7 @@ button {
   font-family: "Hackney";
   background: none;
   transition-duration: 0.5s;
- 
+
 }
 
 .form-button:hover {
@@ -91,6 +101,7 @@ button {
   width: 90%;
   height: 50%;
 }
+
 .card {
   background-color: transparent;
   width: 15vw;
@@ -99,6 +110,11 @@ button {
   transition: 0.6s ease-in-out;
 }
 
+.power {
+ width: 80%;
+ text-align: right;
+ font-size: 5vw;
+}
 .card-content {
   position: relative;
   border-radius: 3vw;
@@ -117,6 +133,7 @@ button {
 .rotate {
   transform: rotateY(180deg);
 }
+
 .cardframe {
   border-radius: 3vw;
   display: flex;
@@ -136,16 +153,24 @@ button {
 
 .back {
   background: linear-gradient(to bottom, #bcc6cc, #eee, #bcc6cc);
+
+  border: 8px solid silver;
+  border-radius: 2vw;
+
 }
+
 .front {
   transform: rotateY(180deg);
 }
- 
-.card-content {
+
+.card-front-content{
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5%;
 
 }
 
@@ -156,90 +181,46 @@ align-items: center;
   top: 0;
   left: 0;
   width: 100%;
-  border-radius: 3vw;
   height: 100%;
   opacity: 50%;
+  border-radius: 1.2vw;
   mix-blend-mode: multiply;
   background: url(https://media.macphun.com/img/uploads/customer/blog/1541154551/15411554815bdc2a99267047.50976593.jpg?q=85&w=1680);
 }
 
-.Common::before {
-  content: "";
-  position: absolute;
-  left: -10px;
-  top: -10px;
-  background: linear-gradient(
-    45deg,
-    rgb(255, 255, 255),
-    rgb(158, 158, 158),
-    rgb(233, 233, 233),
-    #f7f7f7,
-    #807c7a
-  );
-  border-radius: 3vw;
-  background-size: 400%;
-  width: calc(100% + 20px);
-  height: calc(100% + 20px);
-  z-index: -1;
-}
-.Uncommon::before {
-  content: "";
-  position: absolute;
-  left: -10px;
-  top: -10px;
-  background: linear-gradient(
-    45deg,
-    rgb(4, 155, 24),
-    rgb(14, 182, 36),
-    rgb(172, 240, 225),
-    #cecece,
-    #2fff4b
-  );
-  border-radius: 2rem;
-  background-size: 400%;
-  width: calc(100% + 20px);
-  height: calc(100% + 20px);
-  z-index: -1;
-}
-.Rare::before {
-  content: "";
-  position: absolute;
-  left: -10px;
-  top: -10px;
-  background: linear-gradient(
-    45deg,
-    rgb(0, 81, 255),
-    rgb(11, 178, 184),
-    rgb(184, 216, 230),
-    #140b94,
-    #902fff
-  );
-  border-radius: 2rem;
-  background-size: 400%;
-  width: calc(100% + 20px);
-  height: calc(100% + 20px);
-  z-index: -1;
+.Common .front {
+  border: 8px inset silver;
+  border-radius: 2vw;
 }
 
-.Ultra-Rare::before {
+.Uncommon .front {
+  border: 8px inset green;
+  border-radius: 2vw;
+}
+
+.Rare .front {
+  border: 8px inset rgb(25, 122, 233);
+  border-radius: 2vw;
+}
+
+.Ultra-Rare .front::before {
   content: "";
   position: absolute;
   left: -10px;
   top: -10px;
-  background: linear-gradient(
-    45deg,
-    gold,
-    #bb510b,
-    rgb(255, 255, 255),
-    goldenrod,
-    #ff8d2f
-  );
+  background: linear-gradient(45deg,
+      gold,
+      #bb510b,
+      rgb(255, 255, 255),
+      goldenrod,
+      #ff8d2f);
   border-radius: 2rem;
   background-size: 300%;
   width: calc(100% + 20px);
   height: calc(100% + 20px);
   z-index: -1;
   animation: animateEdgeBackground 30s ease-in-out infinite;
+  mix-blend-mode: overlay;
 }
 
 @keyframes animateEdgeBackground {
@@ -261,15 +242,21 @@ align-items: center;
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
 }
+
 .Uncommon:hover {
   box-shadow: 0 0 20px 10px green;
 
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
 }
+
 .Rare:hover {
-  box-shadow: 0 0 30px 10px #fff, /* inner white */ 0 0 30px 30px blue,
-    /* middle magenta */ 0 0 20px 10px cyan; /* outer cyan */
+  box-shadow: 0 0 30px 10px #fff,
+    /* inner white */
+    0 0 30px 30px blue,
+    /* middle magenta */
+    0 0 20px 10px cyan;
+  /* outer cyan */
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
 }
@@ -283,48 +270,48 @@ align-items: center;
 .back-icon {
   mix-blend-mode: multiply;
 }
+
 .front-icon {
   opacity: 100%;
   mix-blend-mode: overlay;
 }
 
 .Tempest {
-  background: url(https://i.pinimg.com/originals/c6/a8/9d/c6a89d990f0055ec4035db19c0df0668.jpg)
-    no-repeat center center / cover;
+  background: url(https://i.pinimg.com/originals/c6/a8/9d/c6a89d990f0055ec4035db19c0df0668.jpg) no-repeat center center / cover;
 }
+
 .Phoenix {
-  background: url(https://i.pinimg.com/originals/4e/43/09/4e4309728598bfc1b06d6681e38502ff.jpg)
-    no-repeat center center / cover;
+  background: url(https://i.pinimg.com/originals/4e/43/09/4e4309728598bfc1b06d6681e38502ff.jpg) no-repeat center center / cover;
 }
+
 .Phantom {
-  background: url(https://i.pinimg.com/originals/52/e4/88/52e48892c471b8575b71b2ec81d21538.jpg)
-    no-repeat center center / cover;
+  background: url(https://i.pinimg.com/originals/52/e4/88/52e48892c471b8575b71b2ec81d21538.jpg) no-repeat center center / cover;
 }
+
 .Scorch {
-  background: url(https://i.pinimg.com/originals/4f/9c/ef/4f9cef22478edd093eb6a74182758c6c.jpg)
-    no-repeat center center / cover;
+  background: url(https://i.pinimg.com/originals/4f/9c/ef/4f9cef22478edd093eb6a74182758c6c.jpg) no-repeat center center / cover;
 }
+
 .Viper {
-  background: url(https://i.pinimg.com/originals/94/62/11/946211b32aedb9d1a21adfba4adc81df.jpg)
-    no-repeat center center / cover;
+  background: url(https://i.pinimg.com/originals/94/62/11/946211b32aedb9d1a21adfba4adc81df.jpg) no-repeat center center / cover;
 }
+
 .Nightrunner {
-  background: url(https://i.pinimg.com/736x/18/ed/74/18ed74b95a0c3856087ff62b9de76175--cyberpunk-character-shooter-games.jpg)
-    no-repeat center center / cover;
+  background: url(https://i.pinimg.com/736x/18/ed/74/18ed74b95a0c3856087ff62b9de76175--cyberpunk-character-shooter-games.jpg) no-repeat center center / cover;
 }
+
 .Archangel {
-  background: url(https://cdna.artstation.com/p/assets/images/images/018/922/450/medium/aimy-anne-calilung-character-post-apoc-female-b.jpg?1561277164)
-    no-repeat center center / cover;
+  background: url(https://cdna.artstation.com/p/assets/images/images/018/922/450/medium/aimy-anne-calilung-character-post-apoc-female-b.jpg?1561277164) no-repeat center center / cover;
 }
+
 .Ghost {
-  background: url(https://i.pinimg.com/originals/6b/f4/da/6bf4da99007d304f76d46ff8e7f7ad46.jpg)
-    no-repeat center center / cover;
+  background: url(https://i.pinimg.com/originals/6b/f4/da/6bf4da99007d304f76d46ff8e7f7ad46.jpg) no-repeat center center / cover;
 }
+
 .Raiden {
-  background: url(https://i.pinimg.com/originals/71/ff/e2/71ffe2e22795d6ca9b80da4e9fd154c8.jpg)
-    no-repeat center center / cover;
+  background: url(https://i.pinimg.com/originals/71/ff/e2/71ffe2e22795d6ca9b80da4e9fd154c8.jpg) no-repeat center center / cover;
 }
+
 .Nomad {
-  background: url(https://i.pinimg.com/originals/50/fa/c7/50fac7e383458e9360faa499f27819d1.jpg)
-    no-repeat center center / cover;
+  background: url(https://i.pinimg.com/originals/50/fa/c7/50fac7e383458e9360faa499f27819d1.jpg) no-repeat center center / cover;
 }

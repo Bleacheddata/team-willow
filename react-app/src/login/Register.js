@@ -31,7 +31,7 @@ export default class Register extends React.Component {
           icon: "success",
           type: "success"
         });
-        this.props.history.push('/');
+        window.location.replace("/login");
       }).catch((err) => {
         swal({
           text: err.response.data.errorMessage,

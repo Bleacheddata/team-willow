@@ -6,7 +6,7 @@ userSchema = new Schema( {
     username: String,
     password: String,
     cardCollection : Array,
-    packs :  { type: Number, default: 0 },
+    packs :  { type: Number, default: 0 }
 }),
 user = mongoose.model('user', userSchema);
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
 import { Button, TextField, Link } from '@material-ui/core';
-import {Navigate} from "react-router-dom";
 import axios from "axios";
 const bcrypt = require('bcryptjs');
 var salt = bcrypt.genSaltSync(10);
@@ -29,7 +28,11 @@ export default class Login extends React.Component {
       password: pwd,
     }).then((res) => {
       localStorage.setItem('token', res.data.token);
-    
+      swal({
+        text: res.data.title,
+        icon: "success",
+        type: "success"
+      });
       window.location.replace("/");
 
   
