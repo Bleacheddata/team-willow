@@ -22,7 +22,7 @@ export default class Register extends React.Component {
 
     
     if(this.state.confirm_password === this.state.password) {
-      axios.post('http://localhost:8001/register', {
+      axios.post('http://localhost:8001/auth/register', {
         username: this.state.username,
         password: this.state.password,
       }).then((res) => {
