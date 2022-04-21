@@ -6,11 +6,11 @@ export default class CardPacks extends React.Component {
       super(props);
       this.state = {
         cardPack:  [],
-        packCount: this.props.packCount,
-        gold: this.props.gold
+        packCount: 0,
+        gold: 0
       };
   
-    
+      this.getUserCards = this.getUserCards.bind(this);
       this.openPack = this.openPack.bind(this);
       this.onHover = this.onHover.bind(this);
       this.onLeaveHover = this.onLeaveHover.bind(this);
@@ -18,22 +18,48 @@ export default class CardPacks extends React.Component {
       this.buyPack = this.buyPack.bind(this);
     }
 
-      componentDidMount() {
-  
-        
-     
+     componentDidMount() {
+      this.getUserCards();
+
+     }
+      getUserCards() {
+      
+        let token = localStorage.getItem("token")
+   
+   
+     if(token!=undefined || token!=null) {
+      axios.get('http://127.0.0.1:8001/user', {
+        headers: {
+          'Authorization': token
+        }
+      })
+      .then((res) => {
         this.setState({
-          packCount: this.props.packCount,
-          gold : this.props.gold
+          packCount: res.data.packs,
+          gold: res.data.gold
         });
         console.log(this.state.packCount);
         if(this.state.packCount<=0) {
           document.getElementById("btn-packopen").setAttribute("disabled", "disabled");
         }
+        else {
+          document.getElementById("btn-packopen").removeAttribute("disabled");
+        }
         if(this.state.gold<100) {
           document.getElementById("btn-buypack").setAttribute("disabled", "disabled");
         }
+        else {
+          document.getElementById("btn-buypack").removeAttribute("disabled");
+        }
 
+      })
+      .catch((error) => {
+        console.error(error);
+       
+      })
+     }
+     
+     
      
       
       
@@ -44,8 +70,10 @@ export default class CardPacks extends React.Component {
         <div className="CardPacks">
          
          <div className = "cardpack-buttons">
-         <h1>{this.state.packCount} card packs remaining</h1>
+         <h2>{this.state.packCount} card packs remaining</h2>
+         <h2>{this.state.gold} gold remaining</h2>
          <div>
+    
          <button id = "btn-buypack" onClick={this.buyPack}>Buy Card Packs</button>
           <button id = "btn-packopen" onClick={this.openPack}>Open Card Pack</button>
           </div>
@@ -124,7 +152,7 @@ export default class CardPacks extends React.Component {
   
     async buyPack(event) {
 
-       if (this.state.gold>100) {
+       if (this.state.gold>=100) {
       axios.get('http://127.0.0.1:8001/user/buypack',{
         headers: {
           'Authorization': localStorage.getItem("token")
@@ -135,6 +163,7 @@ export default class CardPacks extends React.Component {
           text: res.data,
           icon: "success"
         });
+        this.getUserCards();
       })
       .catch((err) => {
         swal({
@@ -143,7 +172,7 @@ export default class CardPacks extends React.Component {
         });
       })
     }
-      else if (this.state.gold<100) {
+       else if (this.state.gold<100) {
         event.target.setAttribute("disabled", "disabled");
       }
       
@@ -163,6 +192,7 @@ export default class CardPacks extends React.Component {
                 cardPack: res.data.concat(),
                 packCount : this.state.packCount-1
            });
+      this.getUserCards();
       
     })
     .catch((err) => {
