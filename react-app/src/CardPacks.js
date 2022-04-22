@@ -71,7 +71,8 @@ export default class CardPacks extends React.Component {
          
          <div className = "cardpack-buttons">
          <h2>{this.state.packCount} card packs remaining</h2>
-         <h2>{this.state.gold} gold remaining</h2>
+         <img src = "./images/dollar-coin"/>
+         <h2>{this.state.gold} remaining</h2>
          <div>
     
          <button id = "btn-buypack" onClick={this.buyPack}>Buy Card Packs</button>
