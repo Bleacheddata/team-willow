@@ -67,17 +67,19 @@ export default class CardPacks extends React.Component {
     
     render() {
       return (
-        <div className="CardPacks">
+      <div className="CardPacks">
          
-         <div className = "cardpack-buttons">
-         <h2>{this.state.packCount} card packs remaining</h2>
-         <img src = "./images/dollar-coin"/>
-         <h2>{this.state.gold} remaining</h2>
-         <div>
+        
+     
+       
+       <div className = "cardpack_menu">
+        
+         <div className = "cardpack-menu-item">  <img src = "https://github.com/Bleacheddata/team-willow/blob/master/react-app/src/images/card_icon.png?raw=true" className = "menu-icon" />{this.state.packCount} card packs remaining</div>
+         <div className = "cardpack-menu-item">  <img src = "https://github.com/Bleacheddata/team-willow/blob/master/react-app/src/images/dollar-coin.png?raw=true"className = "menu-icon" /> {this.state.gold} remaining</div>
+       
     
          <button id = "btn-buypack" onClick={this.buyPack}>Buy Card Packs</button>
           <button id = "btn-packopen" onClick={this.openPack}>Open Card Pack</button>
-          </div>
           </div>
           <div className="cards-container">
             {this.state.cardPack != [] && 
@@ -93,8 +95,7 @@ export default class CardPacks extends React.Component {
                   <div className={`cardframe back`}>
                     <img
                       className="back-icon"
-                      src="https://uploads.codesandbox.io/uploads/user/adb5b6ff-3d37-4b52-b8d5-25098bc45d0a/DoYE-back_icon.png
-              "
+                      src="https://uploads.codesandbox.io/uploads/user/adb5b6ff-3d37-4b52-b8d5-25098bc45d0a/DoYE-back_icon.png"
                       width="150px"
                       alt=""
                     />
@@ -206,7 +207,7 @@ export default class CardPacks extends React.Component {
        setTimeout(function() {
 
          cards.item(i).classList.remove("disabled");
-         cards.item(i).classList.add("roll-in-blurred-left");
+         cards.item(i).classList.add("tilt-in-top-1");
    
      
       
