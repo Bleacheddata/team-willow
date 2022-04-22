@@ -64,9 +64,9 @@ router.get("/", function (req, res) {
     if (decodedToken) {
 
         user.findOne({
-            username: decodedToken.user
-        }, function (err, result) {
-            if (err)
+            _id: decodedToken.id
+        },{ username: 1, packs: 1, gold: 1 },function (err, result) {
+            if (err) throw err;
             console.log(result);
             res.json(result);
         });
@@ -77,39 +77,11 @@ router.get("/", function (req, res) {
 
 });
 
-router.get("/packcount", function (req, res) {
-
-    let decodedToken;
-    let token = req.headers.authorization;
-    jwt.verify(token, 'shhhhh11111', function (err, decoded) {
-        if (err) {
-
-            console.log(err);
-
-        }
-        decodedToken = decoded;
-    });
-
-    if (decodedToken != undefined) {
-        let packCount;
-        user.findOne({
-            username: decodedToken.user
-        }, function (err, result) {
-            if (err) throw err;
-            packCount = result.packs;
-            res.json(packCount);
-        });
-
-    }
 
 
+router.put("/gold", function (req, res) {
 
-});
-
-
-router.get("/buypack", function (req, res) {
-
-    console.log(req.headers.authorization);
+   
     let decodedToken;
     let token = req.headers.authorization;
     jwt.verify(token, 'shhhhh11111', function (err, decoded) {
@@ -124,30 +96,39 @@ router.get("/buypack", function (req, res) {
     if (decodedToken != undefined) {
 
         user.findOne({
-            username: decodedToken.user
-        }, function (err, result) {
-            if (err) throw err;
-            console.log(result);
-            gold = result.gold;
+              _id: decodedToken.id
+        }, { username: 1, packs: 1, gold: 1 }, function (err, result) {
+            if (err)  {
+                res.send(err);
+                throw err;
+              
+            } 
+            else {
+                gold = result.gold;
 
-            if(gold >= 100) {
-
-                user.updateOne({
-                    username: decodedToken.user
-                }, {
-                    $inc: {
-                        gold: -100,
-                        packs: +1
-                        
-                    }              
-                }, function (err) {
-                    if (err)  {
-                        res.json(err);
-                    } 
-
-                    res.json("Pack bought successfully");
-                })
+                if(gold >= 100) {
+    
+                    user.updateOne({
+                        _id: decodedToken.id
+                    }, {
+                        $inc: {
+                            gold: -100,
+                            packs: +1
+                            
+                        }              
+                    }, function (err) {
+                        if (err)  {
+                            res.json(err);
+                        } 
+    
+                        res.json("Pack bought successfully");
+                    })
+                }
             }
+
+            
+            
+          
 
 
         })
@@ -162,7 +143,7 @@ router.get("/buypack", function (req, res) {
 })
 
 
-router.put("/cardpack", function (req, res) {
+router.put("/cardpacks", function (req, res) {
     console.log(req.headers.authorization);
     let decodedToken;
     let token = req.headers.authorization;
@@ -177,10 +158,11 @@ router.put("/cardpack", function (req, res) {
 
     if (decodedToken != undefined) {
 
+    
         let packCount;
         user.findOne({
-            username: decodedToken.user
-        }, function (err, result) {
+            _id: decodedToken.id
+        }, { username: 1, packs: 1, gold: 1 }, function (err, result) {
             if (err) throw err;
             packCount = result.packs;
 
@@ -195,7 +177,7 @@ router.put("/cardpack", function (req, res) {
 
 
                     user.updateOne({
-                        username: decodedToken.user
+                        _id: decodedToken.id
                     }, {
                         $inc: {
                             packs: -1

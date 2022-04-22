@@ -81,7 +81,7 @@ export default class CardPacks extends React.Component {
           <div className="cards-container">
             {this.state.cardPack != [] && 
              this.state.cardPack.map((i, index) => (
-              <div key = {`card ${i.index}`} className={`card`}>
+              <div key = {`card ${index}`} className={`card disabled`}>
                 <div
                   id={index}
                   className={`card-content ${i.rarity}`}
@@ -153,7 +153,7 @@ export default class CardPacks extends React.Component {
     async buyPack(event) {
 
        if (this.state.gold>=100) {
-      axios.get('http://127.0.0.1:8001/user/buypack',{
+      axios.put('http://127.0.0.1:8001/user/gold', "", {
         headers: {
           'Authorization': localStorage.getItem("token")
         }
@@ -180,8 +180,12 @@ export default class CardPacks extends React.Component {
 
   async openPack(event) {
     if(this.state.packCount>=1) {
-     
-    axios.put('http://127.0.0.1:8001/user/cardpack', "",{
+
+      
+      
+       
+      
+    axios.put('http://127.0.0.1:8001/user/cardpacks', "",{
       headers: {
         'Authorization': localStorage.getItem("token")
       }
@@ -193,6 +197,21 @@ export default class CardPacks extends React.Component {
                 packCount : this.state.packCount-1
            });
       this.getUserCards();
+
+
+      let cards = document.getElementsByClassName("card");
+      for (let i= 0; i < cards.length; i++) {
+        
+       setTimeout(function() {
+
+         cards.item(i).classList.remove("disabled");
+         cards.item(i).classList.add("roll-in-blurred-left");
+   
+     
+      
+
+       }, 1000*i);
+      }
       
     })
     .catch((err) => {
