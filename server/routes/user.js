@@ -7,8 +7,10 @@ let user = require("../model/user.js");
 let card = require("../model/card.js");
 
 
-function createCardPackFrom(allCards) {
+function createCardPackFrom(cards) {
 
+    allCards = shuffle(cards);
+    
     let commonCards = allCards.filter(element => element.rarity == "Common");
 
     let uncommonCards = allCards.filter(element => element.rarity == "Uncommon");
@@ -18,6 +20,7 @@ function createCardPackFrom(allCards) {
     let ultraRareCards = allCards.filter(element => element.rarity == "Ultra-Rare");
 
 
+    
 
     uncommonCards.splice(0, 20);
     rareCards.splice(0, 30);
@@ -25,11 +28,10 @@ function createCardPackFrom(allCards) {
 
     let cardsToPickFrom = [...commonCards, ...uncommonCards, ...rareCards, ...ultraRareCards];
 
-    let cardPack = shuffle(cardsToPickFrom);
 
-    cardPack.splice(0, 67);
+    cardsToPickFrom.splice(0, 67);
 
-    return cardPack;
+    return cardsToPickFrom;
 }
 
 function shuffle(array) {

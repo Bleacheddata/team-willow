@@ -207,7 +207,7 @@ export default class CardPacks extends React.Component {
        setTimeout(function() {
 
          cards.item(i).classList.remove("disabled");
-         cards.item(i).classList.add("tilt-in-top-1");
+         cards.item(i).classList.add("roll-in-blurred-left");
    
      
       
