@@ -9,7 +9,6 @@ import Login from "./login/Login";
 import Register from "./login/Register";
 import CardPacks from "./CardPacks";
 import "./styles.css";
-import NaviBar from "./NaviBar";
 export default class App extends React.Component {
   constructor(props){
     super(props);
@@ -116,7 +115,7 @@ class Home extends React.Component {
         <h1>Welcome to the game</h1>
        
         {this.props.loggedIn === true && 
-        <Link to="/user/cardpacks">Open cards</Link>
+        <Link to="/user/cardpacks">Open Card Packs</Link>
        }
 
        {this.props.loggedIn === false && 

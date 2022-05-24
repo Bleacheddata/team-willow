@@ -27,7 +27,6 @@ h1 {
   font-size: 5vw;
 }
 
-
 .Home,
 .Login,
 .Register,
@@ -57,14 +56,21 @@ h1 {
   text-align: center;
   margin: 2vw;
 }
-.cardpack-menu-item{
+.cardpack_heading {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  
-
+  text-align: center;
+  margin: 2vw;
+ 
 }
+
+.cardpack_heading > div {
+  font-size: 4vw;
+  margin: 1vw;
+}
+
 
 
 
@@ -107,6 +113,9 @@ button {
   justify-content: space-around;
   width: 95%;
   height: 50%;
+  align-content: center;
+  align-items: center;
+  
 }
 
 .card {
@@ -115,6 +124,7 @@ button {
   height: 25vw;
   perspective: 1000px;
   transition: 0.6s ease-in-out;
+
 }
 
 .power {
@@ -161,7 +171,7 @@ button {
 .back {
   background: linear-gradient(to bottom, #bcc6cc, #eee, #bcc6cc);
 
-  border: 8px solid silver;
+  border: 8px inset silver;
   border-radius: 2vw;
 
 }
@@ -212,7 +222,10 @@ h2 {
   border: 8px inset rgb(25, 122, 233);
   border-radius: 2vw;
 }
-
+.Ultra-Rare .front {
+  border: 10px inset;
+  border-radius: 2vw;
+}
 .Ultra-Rare .front::before {
   content: "";
   position: absolute;

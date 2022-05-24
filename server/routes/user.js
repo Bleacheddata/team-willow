@@ -9,29 +9,30 @@ let card = require("../model/card.js");
 
 function createCardPackFrom(cards) {
 
-    allCards = shuffle(cards);
     
-    let commonCards = allCards.filter(element => element.rarity == "Common");
+    let commonCards = cards.filter(element => element.rarity == "Common");
 
-    let uncommonCards = allCards.filter(element => element.rarity == "Uncommon");
+    let uncommonCards = cards.filter(element => element.rarity == "Uncommon");
 
-    let rareCards = allCards.filter(element => element.rarity == "Rare");
+    let rareCards = cards.filter(element => element.rarity == "Rare");
 
-    let ultraRareCards = allCards.filter(element => element.rarity == "Ultra-Rare");
+    let ultraRareCards = cards.filter(element => element.rarity == "Ultra-Rare");
 
 
     
 
+    
     uncommonCards.splice(0, 20);
     rareCards.splice(0, 30);
     ultraRareCards.splice(0, 38)
 
     let cardsToPickFrom = [...commonCards, ...uncommonCards, ...rareCards, ...ultraRareCards];
 
+    let allCards = shuffle(cardsToPickFrom)
+  
+    allCards.splice(0, 67);
 
-    cardsToPickFrom.splice(0, 67);
-
-    return cardsToPickFrom;
+    return shuffle(allCards);
 }
 
 function shuffle(array) {

@@ -74,8 +74,11 @@ export default class CardPacks extends React.Component {
        
        <div className = "cardpack_menu">
         
-         <div className = "cardpack-menu-item">  <img src = "https://github.com/Bleacheddata/team-willow/blob/master/react-app/src/images/card_icon.png?raw=true" className = "menu-icon" />{this.state.packCount} card packs remaining</div>
-         <div className = "cardpack-menu-item">  <img src = "https://github.com/Bleacheddata/team-willow/blob/master/react-app/src/images/dollar-coin.png?raw=true"className = "menu-icon" /> {this.state.gold} remaining</div>
+        <div className = "cardpack_heading">
+        <div>  <img src = "https://github.com/Bleacheddata/team-willow/blob/master/react-app/src/images/card_icon.png?raw=true" className = "menu-icon" />{this.state.packCount} card packs remaining</div>
+         <div>  <img src = "https://github.com/Bleacheddata/team-willow/blob/master/react-app/src/images/dollar-coin.png?raw=true"className = "menu-icon" /> {this.state.gold} remaining</div>
+        </div>
+      
        
     
          <button id = "btn-buypack" onClick={this.buyPack}>Buy Card Packs</button>
@@ -109,7 +112,7 @@ export default class CardPacks extends React.Component {
                  
                     <div className = "card-front-content">
                     <h2 className="power white"> {i.power} </h2>
-                    <div className="cardmid white">
+                    <div className={`cardmid white`}>
                       <img
                         className="front-icon"
                         src="https://raw.githubusercontent.com/Bleacheddata/team-willow/4c8078c552029b1113077c393bce2b10f59d87de/src/images/generatorIcon.svg"
