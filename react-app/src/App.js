@@ -142,10 +142,13 @@ class NavBar extends React.Component {
         
 
         <Link to="/">Home</Link>
+
+        <>Duel Legends</>
         
         {this.props.loggedIn === false && 
          <Link to="/login">Log In</Link>
         }
+       
 
         {this.props.loggedIn === true && 
           <button onClick = {this.logOut}>Log out</button>
