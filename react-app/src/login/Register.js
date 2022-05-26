@@ -9,19 +9,62 @@ export default class Register extends React.Component {
     this.state = {
       username: '',
       password: '',
-      confirm_password: ''
+      confirm_password: '',
+      error: false
     };
+
+    this.onChange = this.onChange.bind(this);
+    this.validate = this.validate.bind(this);
+    this.register= this.register.bind(this);
   }
 
   onChange = (e) => {
+
+ 
+  
     this.setState({ [e.target.name]: e.target.value });
+    this.validate();
+
+  
   }
  
+  validate () {
 
-  register = () => {
 
-    
-    if(this.state.confirm_password === this.state.password) {
+      if(this.state.username.length < 4) {
+       this.setState({error: true});
+      }
+      else {
+        this.setState({error: false});
+      }
+ 
+      if(this.state.password.length < 6) {
+        this.setState({error: true});
+       }
+       else {
+        this.setState({error: false});
+       }
+
+       if(this.state.confirm_password.length < 6) {
+        this.setState({error: true});
+       }
+       else {
+        this.setState({error: false});
+       }
+
+       console.log(this.state.error);
+  
+  
+ 
+  }
+  
+  register = (e) => {
+
+
+
+
+    console.log(this.state.error);
+    if(this.state.error === false && this.state.password ===this.state.confirm_password) {
       axios.post('http://localhost:8001/auth/register', {
         username: this.state.username,
         password: this.state.password,
@@ -35,16 +78,27 @@ export default class Register extends React.Component {
       }).catch((err) => {
         swal({
           text: err.response.data.errorMessage,
-          icon: "error",
-          type: "error"
+          icon: "error"
         });
+      });
+    }
+    else if(this.state.confirm_password !== this.state.password && this.state.error === true) {
+      swal({
+        text: "Please correct errors",
+        icon: "error"
+      });
+    }
+    else if(this.state.confirm_password !== this.state.password && this.state.error === false) {
+      swal({
+        text: "Please confirm password",
+        icon: "error"
       });
     }
     else {
       swal({
-        text: "Please confirm your password",
-        icon: "error",
-        type: "error"
+        text: "Please correct errors",
+        icon: "error"
+        
       });
     }
    
@@ -59,7 +113,7 @@ export default class Register extends React.Component {
 
           <div>
             <TextField
-                id="standard-basic"
+              
                 type="text"
                 autoComplete="off"
                 name="username"
@@ -67,10 +121,14 @@ export default class Register extends React.Component {
                 onChange={this.onChange}
                 placeholder="User Name"
                 required
+            
+                error={this.state.error}
+                helperText={this.state.error == false ? '' : `Minimum 4 length`}
+             
             />
             <br /><br />
             <TextField
-                id="standard-basic"
+              
                 type="password"
                 autoComplete="off"
                 name="password"
@@ -78,10 +136,13 @@ export default class Register extends React.Component {
                 onChange={this.onChange}
                 placeholder="Password"
                 required
+                error={this.state.error}
+                helperText={this.state.error == false ? '' : `Minimum 6 length`}
+                
             />
             <br /><br />
             <TextField
-                id="standard-basic"
+              
                 type="password"
                 autoComplete="off"
                 name="confirm_password"
@@ -89,6 +150,9 @@ export default class Register extends React.Component {
                 onChange={this.onChange}
                 placeholder="Confirm Password"
                 required
+                error={this.state.error}
+                helperText={this.state.error === false ? '' : `Minimum 6 length`}
+                
             />
             <br /><br />
             <Button

@@ -113,10 +113,11 @@ button {
 .cards-container {
   display: flex;
   justify-content: space-around;
-  width: 95%;
-  height: 50%;
-  align-content: center;
-  align-items: center;
+  width: 95vw;
+  height: 80vh;
+  align-content: space-between;
+  align-items: space-between;
+  flex-wrap: wrap;
   
 }
 
@@ -126,7 +127,6 @@ button {
   height: 25vw;
   perspective: 1000px;
   transition: 0.6s ease-in-out;
-
 }
 
 .power {
@@ -403,8 +403,30 @@ h2 {
 
 * {
   font-size: 9vw;
+  
 
 }
+
+.cards-container {
+  height: 110vh;
+
+}
+
+.card-front-content > h2 {
+  font-size: 3vw;
+}
+
+.front-icon {
+  width: 50%;
+}
+
+.card{
+  flex: 0 0 50%;
+  height: 80vw;
+
+}
+
+
 }
 
 @media only screen and (max-width: 900px) {
@@ -414,4 +436,28 @@ h2 {
     font-size: 5vw;
   
   }
+  .cards-container {
+    height: 90vh;
+
+  
   }
+  
+  .card-front-content > h2 {
+    font-size: 3.5vw;
+  }
+  
+  .front-icon {
+    width: 50%;
+  }
+  .card{
+    flex: 0 0 33.3%;
+    height: 50vh;
+    width: 5px;
+  
+  }
+
+  }
+
+
+
+
