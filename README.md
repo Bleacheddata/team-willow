@@ -7,7 +7,7 @@ Clone or download this repository
 1. `cd team-willow/server`
 2. `npm install`
 3. `cd team-willow/react-app`
-4. `npm install`
+4. `npm install --force`
 
 ### To Run
 
