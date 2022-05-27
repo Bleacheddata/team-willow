@@ -5,6 +5,9 @@ import axios from "axios";
 const bcrypt = require('bcryptjs');
 var salt = bcrypt.genSaltSync(10);
 
+
+
+//component that displays the Login functionality
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -19,6 +22,8 @@ export default class Login extends React.Component {
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
+
+  // login using username and password by sending a post request to the /auth/login endpoint
   logIn = () => {
 
     const pwd = bcrypt.hashSync(this.state.password, salt);

@@ -28,6 +28,8 @@ export default class Register extends React.Component {
   
   }
  
+
+  //validation 
   validate () {
 
 
@@ -58,6 +60,7 @@ export default class Register extends React.Component {
  
   }
   
+  // register by sending the username and password in a POST request to the /auth/register endpoint
   register = (e) => {
 
 

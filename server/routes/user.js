@@ -7,6 +7,7 @@ let user = require("../model/user.js");
 let card = require("../model/card.js");
 
 
+//returns a card pack from all the 160 cards stored in the database
 function createCardPackFrom(cards) {
 
     
@@ -35,6 +36,7 @@ function createCardPackFrom(cards) {
     return shuffle(allCards);
 }
 
+//returns a shuffled array through a randomizing function
 function shuffle(array) {
     let currID = array.length;
     // There remain elements to shuffle
@@ -50,7 +52,7 @@ function shuffle(array) {
     return array;
 }
 
-
+//get username, pack count and gold amount
 router.get("/", function (req, res) {
     let decodedToken;
     let token = req.headers.authorization;
@@ -81,7 +83,7 @@ router.get("/", function (req, res) {
 });
 
 
-
+//decrement the gold amount by 100 when user clicks buy card pack button
 router.put("/gold", function (req, res) {
 
    
@@ -145,7 +147,7 @@ router.put("/gold", function (req, res) {
 
 })
 
-
+//creates a card pack and is added to the users collection, decrements the card pack count by 1
 router.put("/cardpacks", function (req, res) {
     console.log(req.headers.authorization);
     let decodedToken;

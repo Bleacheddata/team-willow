@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import swal from 'sweetalert';
+
+//component that displays purchasing card packs, opening card packs and displays the cards once opened 
 export default class CardPacks extends React.Component {
     constructor(props) {
       super(props);
@@ -10,7 +12,9 @@ export default class CardPacks extends React.Component {
         gold: 0
       };
   
-      this.getUserCards = this.getUserCards.bind(this);
+
+      
+      this.getUserData = this.getUserData.bind(this);
       this.openPack = this.openPack.bind(this);
       this.onHover = this.onHover.bind(this);
       this.onLeaveHover = this.onLeaveHover.bind(this);
@@ -18,11 +22,15 @@ export default class CardPacks extends React.Component {
       this.buyPack = this.buyPack.bind(this);
     }
 
+
+    // once the component has been loaded successfully, call getUserData()
      componentDidMount() {
-      this.getUserCards();
+      this.getUserData();
 
      }
-      getUserCards() {
+
+     //get the loggedin users pack count and gold from the server, and toggles the buying and open pack buttons 
+      getUserData() {
       
         let token = localStorage.getItem("token")
    
@@ -65,13 +73,14 @@ export default class CardPacks extends React.Component {
       
     }
     
+
     render() {
       return (
       <div className="CardPacks">
          
         
      
-       
+       {/* buttons and headings for buying and opening packs */}
        <div className = "cardpack_menu">
         
         <div className = "cardpack_heading">
@@ -84,9 +93,14 @@ export default class CardPacks extends React.Component {
          <button id = "btn-buypack" onClick={this.buyPack}>Buy Card Packs</button>
           <button id = "btn-packopen" onClick={this.openPack}>Open Card Pack</button>
           </div>
+
+
+          {/* cards container utilizing a flexbox, maps over the card */}
           <div className="cards-container">
             {this.state.cardPack != [] && 
              this.state.cardPack.map((i, index) => (
+
+              //card container
               <div key = {`card ${index}`} className={`card disabled`}>
                 <div
                   id={index}
@@ -139,14 +153,18 @@ export default class CardPacks extends React.Component {
     }
   
     
+    // while hovering over a card
     onHover(id) {
       let card = document.getElementById(id);
       card.classList.add("hover");
     }
+
+     // when leaving over a card
     onLeaveHover(id) {
       let card = document.getElementById(id);
       card.classList.remove("hover");
     }
+    //when clicked 
     onClick(id) {
       let card = document.getElementById(id);
       card.classList.remove("hover");
@@ -154,7 +172,7 @@ export default class CardPacks extends React.Component {
     }
 
 
-  
+  //sents a PUT request which increments the gold amount of the user by 100 and increments the users pack count
     async buyPack(event) {
 
        if (this.state.gold>=100) {
@@ -168,7 +186,7 @@ export default class CardPacks extends React.Component {
           text: res.data,
           icon: "success"
         });
-        this.getUserCards();
+        this.getUserData();
       })
       .catch((err) => {
         swal({
@@ -183,6 +201,7 @@ export default class CardPacks extends React.Component {
       
     }
 
+    //sents a PUT request which decrements the pack count and is responded with an array containing 5 card objects  
   async openPack(event) {
     if(this.state.packCount>=1) {
 
@@ -201,7 +220,7 @@ export default class CardPacks extends React.Component {
                 cardPack: res.data.concat(),
                 packCount : this.state.packCount-1
            });
-      this.getUserCards();
+      this.getUserData();
 
 
       let cards = document.getElementsByClassName("card");

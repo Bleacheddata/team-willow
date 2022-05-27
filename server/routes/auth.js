@@ -7,7 +7,7 @@ var jwt = require('jsonwebtoken');
 let user = require("../model/user.js");
 
 
-/* login api */
+//checks if username and password are valid against database, and sends a JWT token to the user if valid
 router.post("/login", (req, res) => {
     console.log("Login");
     try {
@@ -50,7 +50,7 @@ router.post("/login", (req, res) => {
 
 });
 
-/* register api */
+//registers the user with the username and password, returns an error if user already exists
 router.post("/register", (req, res) => {
     try {
         if (req.body && req.body.username && req.body.password) {
@@ -102,7 +102,7 @@ router.post("/register", (req, res) => {
     }
 });
 
-
+//generates a JWT token
 function checkUserAndGenerateToken(data, req, res) {
     jwt.sign({
         user: data.username,
